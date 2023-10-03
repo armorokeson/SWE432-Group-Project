@@ -1,0 +1,68 @@
+h3 {
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
+/* Grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.grid-item {
+    margin: 1rem;
+}
+
+
+/* Page Sections */
+.section {
+    padding: 1rem;
+    background-color: #21212180
+}
+
+.my-music {
+    grid-row: span 2;
+    width: 20rem;
+}
+
+.upcoming-djs {
+    width: 16rem;
+    height: 18rem;
+    margin-bottom: 1rem;
+}
+
+.queue {
+    width: 16rem;
+    height: 18rem;
+}
+
+.album-cover {
+    height: 16rem;
+    width: 16rem;
+    margin-bottom: 1rem;
+}
+
+.lyrics {
+    width: 16rem;
+    height: 20rem;
+}
+
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #21212180;
+}
+
+.table tr:nth-child(even) {
+    background-color: #21212180
+}
+
+
+/* th {
+    border: 1px solid white;
+} */
