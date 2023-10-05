@@ -83,3 +83,18 @@ h3 {
 .table tr:nth-child(even) {
     background-color: #21212180;
 }
+
+
+/* List */
+.list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list li {
+    padding: .5rem 0 .5rem 1rem;
+}
+
+.list li:nth-child(even) {
+    background-color: #21212180;
+}
