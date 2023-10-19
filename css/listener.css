@@ -98,3 +98,35 @@ h3 {
 .list li:nth-child(even) {
     background-color: #21212180;
 }
+
+
+.review-form {
+    align-self: center;
+    margin: 1rem;
+}
+
+.review-form input {
+    width: 40vw;
+    height: 4vh;
+    background-color: #21212180;
+    border: transparent;
+    color: white;
+}
+
+.review-form input:focus {
+    outline-width: 0.2rem;
+    outline-style: solid;
+    outline-color: #4b4b4b80;
+}
+
+.review-form button {
+    height: 4vh;
+    width: 5vw;
+    background-color: #50505080;
+    border-radius: 1rem;
+    color: white;
+    outline-style: solid;
+    outline-color: #84848480;
+    border: transparent;
+    margin: 0.5rem;
+}
