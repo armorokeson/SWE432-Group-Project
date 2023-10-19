@@ -1,8 +1,6 @@
 // William Okeson
 // G01349709
 
-// TODO: inline event hander
-
 let numSongs = 3
 
 // Event listener for when the plus icon is pressed to add a song to the playlist
