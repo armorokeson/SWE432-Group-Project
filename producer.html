@@ -28,11 +28,87 @@
             closeDialogButton.addEventListener('click', function() {
                 dialog.close(); 
             });
+
+
+            // Windows Load
+            window.onload = function() {
+                alert("Welcome to the Producer Page!");
+
+                setTimeout(function() {
+                    alert("Have you checked out our trending songs yet?");
+                }, 5000);
+            };
+
+            // Property
+
+            let song = {
+                title: "Star",
+                artist: "Unknown",
+                genre: "Pop",
+                description: "",
+                playCount: 100
+            };
+
+            console.log(`Playing ${song.title} by ${song.artist}.`);
+            song.playCount += 1;  // Increment play count
+            console.log(`This song has been played ${song.playCount} times.`);
+            song.lastPlayed = new Date();  // Add new property
+            console.log(`This song was last played on ${song.lastPlayed}.`);
+
+            // DOM Modify
+            document.querySelectorAll('#comments li').forEach(function(comment) {
+                comment.addEventListener('click', function() {
+                    comment.textContent = "This comment was clicked!";
+                });
+            });
+
+            // FORM VALIDATION
+            document.getElementById('music-form').addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent actual form submission
+
+                let title = e.target.elements["title"].value;
+                let artist = e.target.elements["artist"].value;
+                let genre = e.target.elements["genre"].value;
+
+                if (!title || !artist || !genre) {
+                    alert('All fields must be filled out!');
+                    return;
+                } else if (title.toLowerCase() === "star") {
+                    alert("The song 'Star' is already in our database!");
+                    return;
+                } else {
+                    alert('Form submitted successfully!');
+                }
+
+            });
+
+            // Event Type
+            document.querySelector('.input-bar').addEventListener('keydown', function(e) {
+                if (e.key === "Enter") {
+                    alert('You pressed Enter in the search bar!');
+                    e.preventDefault();  // Prevent form submission
+                }
+            });
+
+            // Listeners Approach
+            ['trending', 'most-played'].forEach(function(sectionId) {
+                document.getElementById(sectionId).querySelector('h2').addEventListener('mouseover', function() {
+                    this.style.color = "red";
+                });
+                document.getElementById(sectionId).querySelector('h2').addEventListener('mouseout', function() {
+                    this.style.color = "";
+                });
+            });
+
+
+
+
+
         });
     </script>
     <body>
         <div class="navbar">
-            <span class="logo">LOGO</span>
+            <span class="logo" onclick="alert('LOGO was clicked!')">LOGO</span>
             <div class="search">
                 <form class="search-bar">
                         <input class="input-bar" type="text" placeholder="Search your music">
