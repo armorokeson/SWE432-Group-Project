@@ -107,26 +107,20 @@
         });
     </script>
     <body>
-        <div class="navbar">
-            <span class="logo" onclick="alert('LOGO was clicked!')">LOGO</span>
-            <div class="search">
-                <form class="search-bar">
-                        <input class="input-bar" type="text" placeholder="Search your music">
-                        <i class="search-icon fas fa-search"></i>
-
-                </form>
-            </div>
-            <i class="fa-solid fa-bars"></i>
-        </div>
+        <%- include('../partials/header') %>
 
         <div class="container" style="height: auto !important;">
             <div class="section" id="trending">
                 <h2>Trending</h2>
                 <div class="graph"> 
-                    <p>Graph of Trending</p>
+                    <ul>
+                        <% trending.forEach(function(trend) { %>
+                            <li><%= trend %></li>
+                        <% }) %>
+                    </ul>
                 </div>
             </div>
-        
+                    
             <div class="section" id="most-played">
                 <h2>Most Played</h2>
                 <div class="list"> 
@@ -154,35 +148,32 @@
             <div class="section" id="comments">
                 <h2>Comments</h2>
                 <ul>
-                    <li>Comment 1</li>
-                    <li>Comment 2</li>
-                    <li>Comment 3</li>
-                    <li>Comment 4</li>
+                    <% comments.forEach(function(comment) { %>
+                        <li><%= comment %></li>
+                    <% }) %>
                 </ul>
-                </div>
-                <div class="form-section">
-                    <form id="music-form">
-                        <label>
-                            Title: <input type="text" name="title" required>
-                        </label>
-                        <label>
-                            Artist: <input type="text" name="artist" required>
-                        </label>
-                        <label>
-                            Genre: <input type="text" name="genre" required>
-                        </label>
-                        <label>
-                            Description: <textarea name="description" required></textarea>
-                        </label>
-                        <label>
-                            Upload: <input type="file" name="upload" required>
-                        </label>
-                        <button type="submit" class="submit-button">Submit</button>
-                    </form>
-                </div>
-    
             </div>
-        
+            
+            <div class="form-section">
+                <form id="music-form">
+                    <label>
+                        Title: <input type="text" name="title" required>
+                    </label>
+                    <label>
+                        Artist: <input type="text" name="artist" required>
+                    </label>
+                    <label>
+                        Genre: <input type="text" name="genre" required>
+                    </label>
+                    <label>
+                        Description: <textarea name="description" required></textarea>
+                    </label>
+                    <label>
+                        Upload: <input type="file" name="upload" required>
+                    </label>
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
+            </div>        
         </div>
 
         <dialog id="songDetailsDialog">
@@ -195,11 +186,7 @@
         </dialog>
         
 
-        <div class="footer">
-            <span>COPYRIGHT</span>
-            <span>|</span>
-            <span>CONTACT US</span>
-        </div>
+        <%- include('../partials/footer') %>
 
         <audio class="audio-controls" controls src="audio/Oliver Tree - Star.mp3"></audio>
     </body>

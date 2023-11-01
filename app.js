@@ -4,6 +4,7 @@ const routes = require('./routes')
 const app = express()
 
 app.set('view engine', 'ejs')
+app.set('view cache', false);
 app.use(express.static('static'))
 app.use('/', routes)
 
