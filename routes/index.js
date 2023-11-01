@@ -9,6 +9,10 @@ router.get('/listener', (req, res) => {
     res.render('pages/listener')
 })
 
+router.get('/dj', (req, res) => {
+    res.render('pages/dj')
+})
+
 router.get('/producer', (req, res) => {
     const songs = [
         { title: "Star", played: 100 },
