@@ -1,0 +1,97 @@
+.container {
+    width: auto !important;
+    display: flex !important;
+    flex-direction: row;
+    color: #e6e6e6 !important; 
+    flex-wrap: wrap;
+    padding: 20px; 
+}
+
+.section {
+    width: 25%; 
+    margin-bottom: 20px; 
+    background-color: #21212180;
+    border-radius: 20px;
+    margin: 3% auto;
+    padding: 2%;
+}
+.form-section {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #21212180;
+    border-radius: 20px;
+    margin: 3% auto;
+    padding: 2%;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section label, .submit-button {
+    color: #e6e6e6;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+input, textarea, button {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #e6e6e6;
+    width: 100%;
+}
+
+@media(min-width: 992px) {
+    .section, .form-section {
+        max-width: 960px; 
+    }
+}
+
+input, textarea, button {
+    box-sizing: border-box; /* Add this line */
+    background-color: #21212180;
+    color: #e6e6e6;
+}
+
+.container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.container ul {
+    list-style: none;
+    padding: 0;
+}
+.container table th, .container table td, .container li {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #21212180;
+}
+
+.container tr:nth-child(even), .container li:nth-child(odd) {
+    background-color: rgba(188, 188, 188, 0.1);
+}
+
+dialog {
+    width: 80%;
+    max-width: 500px;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #333;
+    color: #e6e6e6;
+    position: relative;
+}
+
+
+figure img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+figcaption {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}

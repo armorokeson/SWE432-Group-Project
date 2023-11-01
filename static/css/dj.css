@@ -1,0 +1,153 @@
+div::-webkit-scrollbar {
+    width: 5px;
+}
+
+div::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: rgba(184, 184, 184, 0.2);
+}
+
+div::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 
+ * BODY 
+ */
+ .container {
+    flex: 14;
+    background-color: black;
+    color: #ffffffcc;
+    width: 100%;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+.container div{
+    margin: 1rem;
+}
+
+.container .left {
+    flex: 3;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .time-slot {
+
+    background-color: #21212180;
+    border-radius: 1rem;
+    height: 40%;
+    overflow-y: auto;
+
+}
+
+.container .record-slot {
+
+    background-color: rgba(33, 33, 33, 0.5);
+    border-radius: 1rem;
+    overflow-y: auto;
+}
+
+.container .left .left-title {
+
+    align-items: left;
+    border: none;
+    border-bottom: solid 1px #ffffff33;
+    padding-bottom: 1rem;
+}
+
+.container .left .left-body {
+
+    border: none;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+    max-height: 70%;
+    /*overflow-y: auto;*/
+
+}
+
+.container .left .left-body ul {
+    list-style: none;
+    padding: 0;
+}
+
+.container .left .left-body li {
+    padding: .5rem 0 .5rem 1rem;
+    cursor: pointer;
+}
+
+.container .left .left-body li:nth-child(even) {
+    background-color: rgba(188, 188, 188, 0.1);
+}
+
+
+.container .right {
+    flex: 9;
+    border-radius: 1rem;
+    background-color: rgba(33, 33, 33, 0.5);
+    
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .right .right-title {
+
+    flex: 1;
+    align-items: center;
+    text-align: center;
+    border: none;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.2);
+    padding-bottom: .5rem;
+}
+
+.container .right .right-list {
+    flex: 10;
+    /*overflow-y: auto;*/
+}
+
+
+.container .right .right-list table {
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    text-align: left;
+}
+
+.container .right .right-list tr:nth-child(even) {
+    background-color: rgba(188, 188, 188, 0.1);
+}
+
+.container .right .right-list th {
+    padding: 0.5rem;
+}
+
+.container .right .right-list td {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.container .right .player {
+
+    flex: 1;
+    background-color: rgb(0, 0, 0);
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .right .right-player .player-left span {
+
+    padding: 0 1rem;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
