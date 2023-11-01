@@ -17,7 +17,7 @@ body {
  */
 
 .navbar {
-    flex: 1;
+    
     background: linear-gradient(0deg, black 1%, rgb(40, 40, 0));
     color: rgb(50, 50, 50);
     width: 100%;
@@ -98,7 +98,6 @@ body {
  */
 
 .footer {
-    flex: 1;
     background: linear-gradient(180deg, black 1%, rgb(40, 40, 0));
     width: 100%;
     height: fit-content;
