@@ -6,7 +6,13 @@ router.get('/', (req, res) => {
 })
 
 router.get('/listener', (req, res) => {
-    res.render('pages/listener')
+    const songs = [
+        { title: "Star", artist: "Oliver Tree"},
+        { title: "Rain", artist: "Sleep Token"},
+        { title: "Back to You", artist: "Illenium"}
+    ]
+
+    res.render('pages/listener', { songs })
 })
 
 router.get('/dj', (req, res) => {

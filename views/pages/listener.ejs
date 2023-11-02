@@ -71,18 +71,12 @@
                             <th>Name</th>
                             <th>Artist</th>
                         </tr>
-                        <tr>
-                            <td>Star</td>
-                            <td>Oliver Tree</td>
-                        </tr>
-                        <tr>
-                            <td>Song 2</td>
-                            <td>Artist 2</td>
-                        </tr>
-                        <tr>
-                            <td>Song 3</td>
-                            <td>Artist 3</td>
-                        </tr>
+                        <% songs.forEach((song) => { %>
+                            <tr>
+                                <td><%= song.title %></td>
+                                <td><%= song.artist %></td>
+                            </tr> 
+                        <% }) %>
                     </table>
                 </div>
 
