@@ -16,7 +16,15 @@ router.get('/listener', (req, res) => {
 })
 
 router.get('/dj', (req, res) => {
-    res.render('pages/dj')
+
+    const records = [
+        {name: 'Basket Case', artist: 'Green Day', album: 'Dookie'},
+        {name: "21 Guns", artist: "Green Day", album: "21 Cen BDown"},
+        {name: "Tender Surrender", artist: "Steve Vai", album: "Enc Guitar Mel."},
+    ]
+
+    res.render('pages/dj', {records})
+
 })
 
 router.get('/producer', (req, res) => {

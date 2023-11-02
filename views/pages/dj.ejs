@@ -129,7 +129,14 @@
                                     <td>Album C</td>
                                     <td>Artist 3</td>
                                 </tr>
-                            </table>  
+                                <% records.forEach((record) => { %>
+                                    <tr>
+                                        <td><%= record.name %></td>
+                                        <td><%= record.album %></td>
+                                        <td><%= record.artist %></td>
+                                    </tr> 
+                                <% }) %>
+                            </table>
     
                         </div>
                     </div>
