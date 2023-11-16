@@ -1,24 +1,65 @@
 // William Okeson
 // G01349709
 
-let numSongs = 3
+const updateTable = async () => {
+    try {
+        const response = await fetch('/listener?songs')
+
+        if (response.ok) {
+            const songs = await response.json()
+            updateHtmlTable(songs)
+        }
+    } catch (err) {
+        console.log('Error updating table: ', err)
+    }
+}
+
+// Function to update the HTML table with the provided list of songs
+const updateHtmlTable = (songs) => {
+    let table = document.querySelector(".my-music table");
+
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+    
+    songs.forEach(song => {
+        let newRow = table.insertRow();
+        let nameCell = newRow.insertCell(0);
+        let artistCell = newRow.insertCell(1);
+
+        nameCell.textContent = song.title;
+        artistCell.textContent = song.artist;
+    });
+};
 
 // Event listener for when the plus icon is pressed to add a song to the playlist
-document.getElementById("add-song").addEventListener("click", () => {
-    let table = document.querySelector(".my-music table");
-    let newRow = table.insertRow();
-
-    let nameCell = newRow.insertCell(0);
-    let artistCell = newRow.insertCell(1);
-
-    numSongs++
+document.getElementById("add-song").addEventListener("click", async () => {
+    let numSongs = document.querySelector(".my-music table").rows.length + 1
     let newSong = {
-        name: "Song " + (numSongs),
-        artist: "Artist " + (numSongs)
+        title: "Song " + (numSongs),
+        artist: "Artist " + (numSongs),
     }
 
-    nameCell.textContent = newSong.name
-    artistCell.textContent = newSong.artist
+    try {
+        const response = await fetch('/listener', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newSong)
+        })
+
+        if (response.ok) {
+            // Song added successfully
+            await updateTable()
+            console.log('Song added successfully');
+        } else {
+            // Handle error response
+            console.error('Error adding song:', response.statusText);
+        }
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 // click event type: pressing "p" will play/pause the audio

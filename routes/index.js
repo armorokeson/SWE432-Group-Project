@@ -50,14 +50,59 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/listener', (req, res) => {
-    const songs = [
-        { title: "Star", artist: "Oliver Tree"},
-        { title: "Rain", artist: "Sleep Token"},
-        { title: "Back to You", artist: "Illenium"}
-    ]
+router.get('/listener', async (req, res) => {
+        if (!is_login(req)) {
+            res.status(401).send('You need to login first. Test data under "listener" user. <a href="/login">Login</a>');
+            return;
+        }
 
-    res.render('pages/listener', { songs })
+        const user = read_user(req);
+        const { Song, migrateData } = require('./listener');
+
+        if ('songs' in req.query) {
+            console.log('Getting songs')
+            const songs = await Song.find({ user: user })
+            return res.json(songs)
+        }
+
+        try {
+            await migrateData();
+        } catch (error) {
+            console.error('Listener migration failed:', error);
+        }
+
+        try {
+            const songs = await Song.find({ user: user });
+            res.render('pages/listener', { songs });
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+            res.status(500).send('Server error occurred');
+        }
+})
+
+router.post('/listener', async (req, res) => {
+    if (!is_login(req)) {
+        res.status(401).json({ error: 'You need to login first.' });
+        return;
+    }
+
+    const user = read_user(req);
+    const { Song } = require('./listener');
+    const { title, artist } = req.body;
+
+    const newSong = new Song({
+        title: title,
+        artist: artist,
+        user: user,
+    })
+
+    try {
+        await newSong.save()
+        res.status(201).json({ message: 'Song added successfully' });
+    } catch (error) {
+        console.error('Error adding song:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 })
 
 router.get('/dj', (req, res) => {

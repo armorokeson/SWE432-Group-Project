@@ -7,6 +7,7 @@ const db = require('./db');
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 app.use(session({ secret: 'swe443-keys', resave: true, saveUninitialized: true }));
 
 app.set('view engine', 'ejs')
