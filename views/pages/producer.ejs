@@ -115,7 +115,7 @@
                 <div class="graph"> 
                     <ul>
                         <% trending.forEach(function(trend) { %>
-                            <li><%= trend %></li>
+                            <li><%= trend.title %></li>
                         <% }) %>
                     </ul>
                 </div>
@@ -129,18 +129,12 @@
                             <th>Song</th>
                             <th>Played</th>
                         </tr>
-                        <tr>
-                            <td class="song-title">Star</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td class="song-title">Star</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td class="song-title">Star</td>
-                            <td>100</td>
-                        </tr>
+                        <% songs.forEach(function(song) { %>
+                            <tr>
+                                <td class="song-title"><%= song.title %> </td>
+                                <td><%= song.played %> </td>
+                            </tr>
+                        <% }) %>
                     </table>
                 </div>
             </div>
@@ -149,7 +143,7 @@
                 <h2>Comments</h2>
                 <ul>
                     <% comments.forEach(function(comment) { %>
-                        <li><%= comment %></li>
+                        <li><%= comment.text %></li>
                     <% }) %>
                 </ul>
             </div>
