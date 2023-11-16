@@ -105,6 +105,41 @@ router.post('/listener', async (req, res) => {
     }
 })
 
+
+router.get('/dj', async (req, res) => {
+    if (!is_login(req)) {
+        res.status(401).send('You need to login first. Test data under "dj" user. <a href="/login">Login</a>');
+        return;
+    }
+
+    const user = read_user(req);
+    const { Song, migrateData } = require('./dj');
+
+    if ('songs' in req.query) {
+        console.log('Getting songs')
+        const songs = await Song.find({ user: user })
+        return res.json(songs)
+    }
+
+    try {
+        await migrateData();
+    } catch (error) {
+        console.error('Dj migration failed:', error);
+    }
+
+    try {
+        const songs = await Song.find({ user: user });
+        res.render('pages/dj', { songs });
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        res.status(500).send('Server error occurred');
+    }
+})
+
+
+
+
+
 router.get('/dj', (req, res) => {
 
     const records = [
