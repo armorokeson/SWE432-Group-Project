@@ -1,16 +1,17 @@
 const mongoose = require('mongoose')
+const { Song } = require('../db')
 
-const songSchema = new mongoose.Schema({
-    title: String,
-    artist: String,
-    album: String,
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
-})
+// const songSchema = new mongoose.Schema({
+//     title: String,
+//     artist: String,
+//     album: String,
+//     user: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'User'
+//     }
+// })
 
-const Song = mongoose.model('Song', songSchema)
+// const Song = mongoose.model('Song', songSchema)
 
 const songs = [
     {name: 'Basket Case', artist: 'Green Day', album: 'Dookie'},

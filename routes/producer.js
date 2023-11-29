@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
+const { Song } = require('../db')
 
-// Song
-const songSchema = new mongoose.Schema({
-    title: String,
-    played: Number,
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
-});
-const Song = mongoose.model('Song', songSchema);
+// // Song
+// const songSchema = new mongoose.Schema({
+//     title: String,
+//     played: Number,
+//     user: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'User'
+//     }
+// });
+// const Song = mongoose.model('Song', songSchema);
 
 // Comment
 const commentSchema = new mongoose.Schema({

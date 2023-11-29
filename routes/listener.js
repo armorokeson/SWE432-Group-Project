@@ -1,15 +1,5 @@
 const mongoose = require('mongoose')
-
-const songSchema = new mongoose.Schema({
-    title: String,
-    artist: String,
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
-})
-
-const Song = mongoose.model('Song', songSchema)
+const { Song } = require('../db')
 
 const songs = [
     { title: "Star", artist: "Oliver Tree" },

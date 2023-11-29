@@ -16,6 +16,10 @@ function is_login (req) {
 }
 
 router.get('/', (req, res) => {
+    if (!is_login(req)) {
+        return res.redirect('/login')
+    }
+    
     res.render('pages/index', { isLogin: is_login(req), user: read_user(req) })
 })
 
@@ -52,8 +56,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/listener', async (req, res) => {
         if (!is_login(req)) {
-            res.status(401).send('You need to login first. Test data under "listener" user. <a href="/login">Login</a>');
-            return;
+            return res.redirect('/login')
         }
 
         const user = read_user(req);
@@ -101,6 +104,22 @@ router.post('/listener', async (req, res) => {
         res.status(201).json({ message: 'Song added successfully' });
     } catch (error) {
         console.error('Error adding song:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+router.delete('/listener', async (req, res) => {
+    const user = read_user(req)
+    const { Song } = require('./listener')
+    const { id } = req.body;
+
+    console.log('Deleting song');
+
+    try {
+        await Song.deleteMany({ _id: id });
+        res.status(201).json({ message: 'Song deleted successfully' });
+    } catch (error) {
+        // console.log('Error deleted song:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })

@@ -114,3 +114,25 @@ function sortSongs(songs) {
     }
 }
 
+const deleteSong = async (song) => {
+    const body = { title: song }
+    try {
+        const response = await fetch('/listener', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        })
+
+        if (response.ok) {
+            await updateTable()
+            console.log("Song successfully deleted")
+        } else {
+            console.log("Failed to delete song")
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+

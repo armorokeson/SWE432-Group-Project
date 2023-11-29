@@ -11,7 +11,6 @@ body {
 }
 
 
-
 /* 
  * HEADER 
  */
@@ -104,6 +103,8 @@ body {
     color: white;
     display: flex;
     justify-content: center;
+    position: fixed;
+    bottom: 1rem;
 }
 
 .footer span{
@@ -130,7 +131,29 @@ body {
  * Other Styles 
  */
 
- .g12button {
-    width: 10rem;
-    height: 4rem;
- }
+.g12button {
+width: 10rem;
+height: 4rem;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #4CAF50;
+}
+
+.dropdown-item {
+    cursor: pointer;
+    color: white;
+    width: fit-content;
+    padding: 5px;
+    text-indent: 0;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: #45a049;
+}

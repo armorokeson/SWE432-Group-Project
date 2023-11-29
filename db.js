@@ -15,4 +15,17 @@ db.once('open', function() {
     console.log('Successfully connected to MongoDB');
 });
 
-module.exports = db;
+const songSchema = new mongoose.Schema({
+    title: String,
+    artist: String,
+    album: String,
+    played: Number,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
+})
+
+const Song = mongoose.model('Song', songSchema)
+
+module.exports = { db, Song };

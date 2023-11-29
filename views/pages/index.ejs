@@ -17,13 +17,18 @@
             <div class="action-container">
                 <% if (isLogin) { %>
                     <h2>Welcome, <%= user.username %>!</h2>
+                    <% if (user.username == 'listener') { %>
+                        <button class="action-button" onclick="window.location.href='/listener'">Listener</button>
+                    <% } %>
+                    <% if (user.username == 'producer') { %>
+                        <button class="action-button" onclick="window.location.href='/producer'">Producer</button>
+                    <% } %>
+                    <% if (user.username == 'dj') { %>
+                        <button class="action-button" onclick="window.location.href='/dj'">DJ</button>
+                    <% } %>
                 <% } %>
-                <button class="action-button" onclick="window.location.href='/login'">Login</button>
-                <button class="action-button" onclick="window.location.href='/listener'">Listener</button>
-                <button class="action-button" onclick="window.location.href='/producer'">Producer</button>
-                <button class="action-button" onclick="window.location.href='/dj'">DJ</button>
                 <% if (isLogin) { %>
-                <button class="action-button" onclick="window.location.href='/logout'">Logout</button>
+                    <button class="action-button" onclick="window.location.href='/logout'">Logout</button>
                 <% } %>
             </div>
         </div>

@@ -75,6 +75,7 @@
                             <tr>
                                 <td><%= song.title %></td>
                                 <td><%= song.artist %></td>
+                                <td><%- include('../partials/song_opt_dropdown', { song: song }) %></td>
                             </tr> 
                         <% }) %>
                     </table>

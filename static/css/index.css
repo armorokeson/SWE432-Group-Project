@@ -7,7 +7,7 @@ html, body {
 }
 
 .main-content {
-    flex-grow: 1; /* Grow to take up all available space */
+    margin-top: 10rem;
     display: flex;
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
