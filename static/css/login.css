@@ -1,0 +1,31 @@
+.login-container {
+    margin: 0 auto;
+    background: transparent;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-container button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
