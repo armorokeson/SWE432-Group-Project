@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const connectionString = 'mongodb://127.0.0.1:27017';
 
 mongoose.connect(connectionString, {
-    useNewUrlParser: true, 
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     dbName: 'swe443-project'
 });
