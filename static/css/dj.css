@@ -1,16 +1,17 @@
 /**DJ Site body section **/
+
 .container {
     height: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
-
     color: #ffffffcc;
     margin: 1.5rem 0;
-
 }
 
+
 /** Scrollbar edits **/
+
 .container div::-webkit-scrollbar {
     width: 5px;
 }
@@ -27,31 +28,28 @@
 
 
 /** left part of the body section **/
+
 .leftside {
     height: 100%;
     width: 30%;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: space-around;
     padding: 1rem;
 }
 
 .time-slot {
-
     background-color: #21212180;
     border-radius: 1rem;
     height: 50%;
     overflow-y: auto;
-
 }
 
 .leftside .title {
-
     align-items: left;
     border: none;
     border-bottom: solid 1px #ffffff33;
     padding: 1rem .5rem;
-
 }
 
 .leftside .title span {
@@ -59,14 +57,11 @@
 }
 
 .leftside .slot-body {
-
     border: none;
     border-bottom: solid 1px rgba(255, 255, 255, 0.2);
     height: 70%;
     padding: 0 0.5rem;
-    
     overflow-y: scroll;
-
 }
 
 .leftside .slot-body ul {
@@ -84,11 +79,9 @@
 }
 
 .record-slot {
-
     background-color: rgba(33, 33, 33, 0.5);
     border-radius: 1rem;
     height: 40%;
-
 }
 
 .record-items {
@@ -108,25 +101,23 @@
 }
 
 .record-items i {
-
     color: #000000cc;
     font-size: 1.2rem;
-
 }
 
 
 /** right part of the body section **/
+
 .rightside {
     height: 100%;
     width: 60%;
-
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
 }
 
-.rightside .music-playlist{
+.rightside .music-playlist {
     border-radius: 1rem;
     background-color: rgba(33, 33, 33, 0.5);
     display: flex;
@@ -136,7 +127,6 @@
 }
 
 .music-playlist .title {
-
     text-align: center;
     border: none;
     border-bottom: solid 1px #ffffff33;
@@ -144,14 +134,17 @@
 }
 
 .music-playlist .music-slot {
-
     margin: 1rem;
+    height: 90%;
+    overflow-y: scroll;
 }
+
 .music-playlist table {
     border: none;
     color: rgba(255, 255, 255, 0.8);
     width: 100%;
     text-align: left;
+    overflow-y: scroll;
 }
 
 .music-playlist table tr:nth-child(even) {

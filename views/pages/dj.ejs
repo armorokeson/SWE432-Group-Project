@@ -27,69 +27,11 @@
                     </div>
                     <div class="slot-body">
                         <ul id="time-list">
-                            <li>
-                                12am - 1am
-                            </li>
-                            <li>
-                                1am - 2am
-                            </li>
-                            <li>
-                                2am - 3am
-                            </li>
-                            <li>
-                                3am - 4am
-                            </li>
-                            <li>
-                                4am - 5am
-                            </li>
-                            <li>
-                                5am - 6am
-                            </li>
-                            <li>
-                                6am - 7am
-                            </li>
-                            <li>
-                                7am - 8am
-                            </li>
-                            <li>
-                                8am - 9am
-                            </li>
-                            <li>
-                                9am - 10am
-                            </li>
-                            <li>
-                                10am - 11am
-                            </li>
-                            <li>
-                                11am - 12pm
-                            </li>
-                            <li>
-                                12pm - 1pm
-                            </li>
-                            <li>
-                                1pm - 2pm
-                            </li>
-                            <li>
-                                2pm - 3pm
-                            </li>
-                            <li>
-                                3pm - 4pm
-                            </li>
-                            <li>
-                                4pm - 5pm
-                            </li>
-                            <li>
-                                5pm - 6pm
-                            </li>
-                            <li>
-                                6pm - 7pm
-                            </li>
-                            <li>
-                                7pm - 8pm
-                            </li>
-                            <li>
-                                8pm - 9pm
-                            </li>
+                            <% timeslots.forEach((ts) => { %>
+                                <li onclick="loadRecords('<%= ts.interval %>')">
+                                    <%= ts.interval %>
+                                </li>
+                                <% }) %>
                         </ul>
                     </div>
                 </div>
@@ -99,6 +41,7 @@
                     </div>
                     <div class="slot-body">
                         <ul id="rec-ul">
+
                         </ul>
                     </div>
 
@@ -120,16 +63,6 @@
                                 <td>Song 1</td>
                                 <td>Album A</td>
                                 <td>Artist 1</td>
-                            </tr>
-                            <tr>
-                                <td>Song 2</td>
-                                <td>Album B</td>
-                                <td>Artist 2</td>
-                            </tr>
-                            <tr>
-                                <td>Song 3</td>
-                                <td>Album C</td>
-                                <td>Artist 3</td>
                             </tr>
                             <% songs.forEach((song) => { %>
                                 <tr>
@@ -156,6 +89,27 @@
             <audio id="audio-player" class="audio-controls" controls src="audio/Oliver Tree - Star.mp3"></audio>
             <script src="js/dj.js"></script>
             <script src="js/menu.js"></script>
+            <script>
+                function loadRecords(interval) {
+                    // Find the timeslot with the selected interval
+                    const selectedTimeslot = timeslots.find(ts => ts.interval === interval);
+
+                    // Get the records (songs) for the selected timeslot
+                    const selectedRecords = selectedTimeslot.records;
+
+                    // Clear the existing records in the records div
+                    const recordsDiv = document.getElementById('records');
+                    recordsDiv.innerHTML = '';
+
+                    // Append each song to the records div
+                    selectedRecords.forEach(song => {
+                        // Assuming records contain objects with name, artist, and album properties
+                        const songDiv = document.createElement('div');
+                        songDiv.textContent = `${song.title}`;
+                        recordsDiv.appendChild(songDiv);
+                    });
+                }
+            </script>
 
 </body>
 

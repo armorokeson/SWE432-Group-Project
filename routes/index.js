@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-function read_user (req) {
+function read_user(req) {
     // read user from session, error handling if user is not logged in
     // return user if logged in, otherwise return null
     try {
@@ -11,7 +11,7 @@ function read_user (req) {
     }
 }
 
-function is_login (req) {
+function is_login(req) {
     return !!read_user(req);
 }
 
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     if (!is_login(req)) {
         return res.redirect('/login')
     }
-    
+
     res.render('pages/index', { isLogin: is_login(req), user: read_user(req) })
 })
 
@@ -32,7 +32,7 @@ router.get('/login', (req, res) => {
     res.render('pages/login')
 })
 
-router.post('/login', async (req, res) => {
+router.post('/login', async(req, res) => {
     try {
         const User = require('./user');
         const username = req.body.username;
@@ -54,36 +54,36 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/listener', async (req, res) => {
-        if (!is_login(req)) {
-            return res.redirect('/login')
-        }
+router.get('/listener', async(req, res) => {
+    if (!is_login(req)) {
+        return res.redirect('/login')
+    }
 
-        const user = read_user(req);
-        const { Song, migrateData } = require('./listener');
+    const user = read_user(req);
+    const { Song, migrateData } = require('./listener');
 
-        if ('songs' in req.query) {
-            console.log('Getting songs')
-            const songs = await Song.find({ user: user })
-            return res.json(songs)
-        }
+    if ('songs' in req.query) {
+        console.log('Getting songs')
+        const songs = await Song.find({ user: user })
+        return res.json(songs)
+    }
 
-        try {
-            await migrateData();
-        } catch (error) {
-            console.error('Listener migration failed:', error);
-        }
+    try {
+        await migrateData();
+    } catch (error) {
+        console.error('Listener migration failed:', error);
+    }
 
-        try {
-            const songs = await Song.find({ user: user });
-            res.render('pages/listener', { songs });
-        } catch (error) {
-            console.error("Error fetching data: ", error);
-            res.status(500).send('Server error occurred');
-        }
+    try {
+        const songs = await Song.find({ user: user });
+        res.render('pages/listener', { songs });
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+        res.status(500).send('Server error occurred');
+    }
 })
 
-router.post('/listener', async (req, res) => {
+router.post('/listener', async(req, res) => {
     if (!is_login(req)) {
         res.status(401).json({ error: 'You need to login first.' });
         return;
@@ -108,7 +108,7 @@ router.post('/listener', async (req, res) => {
     }
 })
 
-router.delete('/listener', async (req, res) => {
+router.delete('/listener', async(req, res) => {
     const user = read_user(req)
     const { Song } = require('./listener')
     const { id } = req.body;
@@ -125,60 +125,45 @@ router.delete('/listener', async (req, res) => {
 })
 
 
-router.get('/dj', async (req, res) => {
+
+router.get('/dj', async(req, res) => {
+    // Post error if user is not logged in
     if (!is_login(req)) {
         res.status(401).send('You need to login first. Test data under "dj" user. <a href="/login">Login</a>');
         return;
     }
-
     const user = read_user(req);
-    const { Song, migrateData } = require('./dj');
-
-    if ('songs' in req.query) {
-        console.log('Getting songs')
-        const songs = await Song.find({ user: user })
-        return res.json(songs)
-    }
-
+    const { Song, TimeSlot, migrateData } = require('./dj');
     try {
         await migrateData();
     } catch (error) {
-        console.error('Dj migration failed:', error);
+        console.error('DJ migration failed:', error);
     }
-
     try {
+        // Get all the songs, timeslots, and trending based on the user
         const songs = await Song.find({ user: user });
-        res.render('pages/dj', { songs });
+        const timeslots = await TimeSlot.find({ user: user });
+        if (!timeslots) {
+            console.error("Timeslots not found");
+            res.status(500).send('Server error occurred');
+            return;
+        }
+        console.log("Timeslots:", timeslots);
+        res.render('pages/dj', { songs, timeslots });
     } catch (error) {
         console.error("Error fetching data: ", error);
         res.status(500).send('Server error occurred');
     }
 })
 
-
-
-
-
-router.get('/dj', (req, res) => {
-
-    const records = [
-        {name: 'Basket Case', artist: 'Green Day', album: 'Dookie'},
-        {name: "21 Guns", artist: "Green Day", album: "21 Cen BDown"},
-        {name: "Tender Surrender", artist: "Steve Vai", album: "Enc Guitar Mel."},
-    ]
-
-    res.render('pages/dj', {records})
-
-})
-
-router.get('/producer', async (req, res) => {
+router.get('/producer', async(req, res) => {
     // Post error if user is not logged in
     if (!is_login(req)) {
         res.status(401).send('You need to login first. Test data under "producer" user. <a href="/login">Login</a>');
         return;
     }
     const user = read_user(req);
-    const { Song, Comment, Trending, migrateData } = require('./producer');  
+    const { Song, Comment, Trending, migrateData } = require('./producer');
     try {
         await migrateData();
     } catch (error) {
