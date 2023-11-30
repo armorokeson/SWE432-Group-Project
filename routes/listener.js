@@ -29,7 +29,7 @@ async function migrateData() {
         console.log('Listener data migration completed successfully.');
     } catch (error) {
         console.error('Listener migration failed:', error);
-    } 
+    }
 }
 
 module.exports = { Song, migrateData }
