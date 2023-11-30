@@ -111,15 +111,21 @@ router.post('/listener', async(req, res) => {
 router.delete('/listener', async(req, res) => {
     const user = read_user(req)
     const { Song } = require('./listener')
-    const { id } = req.body;
+    const { title, artist } = req.body;
 
     console.log('Deleting song');
 
+    const song = new Song({
+        title: title,
+        artist: artist,
+        user: user,
+    })
+
     try {
-        await Song.deleteMany({ _id: id });
+        await Song.deleteMany({ title: title, user: user });
         res.status(201).json({ message: 'Song deleted successfully' });
     } catch (error) {
-        // console.log('Error deleted song:', error);
+        console.log('Error deleted song:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })
@@ -179,6 +185,33 @@ router.get('/producer', async(req, res) => {
     } catch (error) {
         console.error("Error fetching data: ", error);
         res.status(500).send('Server error occurred');
+    }
+})
+
+router.post('/producer', async (req, res) => {
+    if (!is_login(req)) {
+        res.status(401).json({ error: 'You need to login first.' });
+        return;
+    }
+
+    const user = read_user(req);
+
+    const { Song } = require('./producer');
+    const { title, artist } = req.body;
+
+    const newSong = new Song({
+        title: title,
+        artist: artist,
+        played: 0,
+        user: user,
+    })
+
+    try {
+        await newSong.save()
+        res.status(201).json({ message: 'Song added successfully' });
+    } catch (error) {
+        console.error('Error adding song:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 })
 

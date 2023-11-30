@@ -54,28 +54,7 @@
                 </div>
 
                 <!-- My Music -->
-                <div class="grid-item section my-music">
-                    <h3>My Music</h3>
-                    <table class="table">
-                        <tr>
-                            <th>Name</th>
-                            <th>Artist</th>
-                        </tr>
-                        <% songs.forEach((song) => { %>
-                            <tr>
-                                <td>
-                                    <%= song.title %>
-                                </td>
-                                <td>
-                                    <%= song.artist %>
-                                </td>
-                                <td>
-                                    <%- include('../partials/song_opt_dropdown', { song: song }) %>
-                                </td>
-                            </tr>
-                            <% }) %>
-                    </table>
-                </div>
+               <%- include('../partials/my_music', { songs: songs }) %>
 
                 <!-- Upcoming DJ's & Queue -->
                 <div class="grid-item">
