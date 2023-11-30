@@ -65,7 +65,7 @@
         });
 
         // FORM VALIDATION
-        document.getElementById('music-form').addEventListener('submit', function(e) {
+        document.getElementById('music-form').addEventListener('submit', async function(e) {
             e.preventDefault(); // Prevent actual form submission
 
             let title = e.target.elements["title"].value;
@@ -79,7 +79,29 @@
                 alert("The song 'Star' is already in our database!");
                 return;
             } else {
-                alert('Form submitted successfully!');
+                // Submit form via http post request /producer
+                try {
+                    var response = await fetch('/producer', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            title: title,
+                            artist: artist,
+                            genre: genre
+                        })
+                    });
+                    // 201 Created
+                    if (response.status === 201) {
+                        alert('Form submitted successfully!');
+                        window.location.reload();
+                    } else {
+                        alert('An error occurred while submitting the form!');
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
             }
 
         });

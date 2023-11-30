@@ -203,4 +203,31 @@ router.get('/producer', async (req, res) => {
     }
 })
 
+router.post('/producer', async (req, res) => {
+    if (!is_login(req)) {
+        res.status(401).json({ error: 'You need to login first.' });
+        return;
+    }
+
+    const user = read_user(req);
+
+    const { Song } = require('./producer');
+    const { title, artist } = req.body;
+
+    const newSong = new Song({
+        title: title,
+        artist: artist,
+        played: 0,
+        user: user,
+    })
+
+    try {
+        await newSong.save()
+        res.status(201).json({ message: 'Song added successfully' });
+    } catch (error) {
+        console.error('Error adding song:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
 module.exports = router
