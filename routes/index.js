@@ -111,15 +111,21 @@ router.post('/listener', async (req, res) => {
 router.delete('/listener', async (req, res) => {
     const user = read_user(req)
     const { Song } = require('./listener')
-    const { id } = req.body;
+    const { title, artist } = req.body;
 
     console.log('Deleting song');
 
+    const song = new Song({
+        title: title,
+        artist: artist,
+        user: user,
+    })
+
     try {
-        await Song.deleteMany({ _id: id });
+        await Song.deleteMany({ title: title, user: user });
         res.status(201).json({ message: 'Song deleted successfully' });
     } catch (error) {
-        // console.log('Error deleted song:', error);
+        console.log('Error deleted song:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })

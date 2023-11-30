@@ -1,0 +1,15 @@
+<div id="music" class="grid-item section my-music">
+    <h3>My Music</h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Artist</th>
+        </tr>
+        <% songs.forEach((song) => { %>
+            <tr>
+                <td><%= song.title %></td>
+                <td><%= song.artist %></td>
+            </tr> 
+        <% }) %>
+    </table>
+</div>
